@@ -70,7 +70,7 @@ This is the core of our hackathon submission. We integrated Interswitch's **Web 
 
 ### How it works
 
-When a seeker taps **Pay Rent** on a property, we build a hidden HTML form with the payment parameters and load it into a React Native WebView. The form auto-submits a POST to Interswitch's hosted checkout page at:
+When a seeker taps **Pay Rent** on a property, we built a hidden HTML form with the payment parameters and load it into a React Native WebView. The form auto-submits a POST to Interswitch's hosted checkout page at:
 
 ```
 https://newwebpay.qa.interswitchng.com/collections/w/pay
