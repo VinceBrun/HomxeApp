@@ -4,8 +4,6 @@
  * Interswitch checkout endpoint. Detects the redirect after payment
  * and verifies the transaction before showing success or failure.
  *
- * Path: app/(seeker)/property/pay/index.tsx
- *
  * Sandbox test card:
  *   Number: 5061050254756707864  |  Expiry: 06/26  |  CVV: 111  |  PIN: 1111
  *   OTP: 123456  (if prompted)
@@ -52,6 +50,7 @@ export default function PaymentScreen() {
   const params = useLocalSearchParams<Params>();
   const hasStarted = useRef(false);
   const redirectHandled = useRef(false);
+  const webViewRef = useRef<WebView>(null);
 
   const background = useThemeColor({}, "background");
   const textColor = useThemeColor({}, "text");
@@ -267,20 +266,23 @@ export default function PaymentScreen() {
 
       {checkoutHtml ? (
         <WebView
-          // Load HTML that auto-submits the POST form to ISW
-          source={{
-            html: checkoutHtml,
-            baseUrl: "https://newwebpay.qa.interswitchng.com",
-          }}
+          source={{ html: checkoutHtml }}
           onNavigationStateChange={handleNavigationChange}
           onShouldStartLoadWithRequest={handleShouldStartLoad}
+          onError={(e) => {
+            console.log("[ISW] WebView error, retrying:", e.nativeEvent.description);
+            setTimeout(() => webViewRef.current?.reload(), 2000);
+          }}
+          ref={webViewRef}
           javaScriptEnabled
           domStorageEnabled
           thirdPartyCookiesEnabled
           sharedCookiesEnabled
           startInLoadingState
+          cacheEnabled={false}
           mixedContentMode="always"
           originWhitelist={["*"]}
+          setSupportMultipleWindows={false}
           renderLoading={() => (
             <View
               style={[styles.webViewLoader, { backgroundColor: background }]}

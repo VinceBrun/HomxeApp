@@ -1,16 +1,10 @@
-/**
- * Interswitch Payment Gateway Service
- *
- * Strategy: Web Checkout via HTML form POST injected into a WebView.
- * The WebView loads the HTML, auto-submits the POST form to Interswitch,
- * and after payment ISW redirects to our site_redirect_url.
- * We then verify the transaction server-side before crediting the user.
- *
- * Sandbox checkout: https://newwebpay.qa.interswitchng.com/collections/w/pay
- * Live checkout:    https://newwebpay.interswitchng.com/collections/w/pay
- *
- * Path: services/interswitchPayment.ts
- */
+// Interswitch Payment Service
+// We use the Web Checkout approach — build an HTML form, load it in a WebView,
+// and let Interswitch handle the payment UI. After payment, they redirect back
+// to us and we verify the transaction server-side before marking it as done.
+//
+// Sandbox: https://newwebpay.qa.interswitchng.com/collections/w/pay
+// Live:    https://newwebpay.interswitchng.com/collections/w/pay
 
 const ISW_CHECKOUT_URL =
   "https://newwebpay.qa.interswitchng.com/collections/w/pay";
@@ -20,8 +14,6 @@ const ISW_VERIFY_URL =
 
 const ISW_MERCHANT_CODE = process.env.EXPO_PUBLIC_ISW_MERCHANT_CODE ?? "MX6072";
 const ISW_PAY_ITEM_ID = process.env.EXPO_PUBLIC_ISW_PAY_ITEM_ID ?? "9405967";
-
-// ─── Types ────────────────────────────────────────────────────────────────────
 
 export type PaymentPurpose = "rent" | "service";
 
@@ -56,10 +48,11 @@ export interface VerifyPaymentResult {
   error?: string;
 }
 
-// ─── Utilities ────────────────────────────────────────────────────────────────
-
+// Interswitch expects amounts in kobo (Naira x 100)
 export const toKobo = (naira: number): number => Math.round(naira * 100);
 
+// Each transaction needs a unique reference — we prefix with the purpose
+// so it's easy to identify in the Interswitch dashboard
 export const generateTxnRef = (purpose: PaymentPurpose): string => {
   const prefix = purpose === "rent" ? "RENT" : "SVC";
   const timestamp = Date.now();
@@ -67,12 +60,9 @@ export const generateTxnRef = (purpose: PaymentPurpose): string => {
   return `HMX_${prefix}_${timestamp}_${rand}`;
 };
 
-// ─── Payment Initiation ───────────────────────────────────────────────────────
-
-/**
- * Build an HTML page that auto-submits a POST form to Interswitch Web Checkout.
- * Load the returned `checkoutHtml` into a WebView via `source={{ html }}`.
- */
+// Builds the HTML page that gets loaded into the WebView.
+// The form auto-submits after 1.5s to give the WebView time to
+// resolve DNS before the POST fires — Android WebView can be slow on this.
 export const initiatePayment = (
   params: InitiatePaymentParams,
 ): InitiatePaymentResult => {
@@ -112,7 +102,7 @@ export const initiatePayment = (
       <input type="hidden" name="pay_item_name"     value="${params.description}" />
       <input type="hidden" name="site_redirect_url" value="${params.redirectUrl}" />
     </form>
-    <script>document.getElementById('payForm').submit();</script>
+    <script>setTimeout(function(){ document.getElementById('payForm').submit(); }, 1500);</script>
   </body>
 </html>`;
 
@@ -123,13 +113,9 @@ export const initiatePayment = (
   }
 };
 
-// ─── Transaction Verification ─────────────────────────────────────────────────
-
-/**
- * Verify a transaction after the WebView detects the redirect.
- * ResponseCode "00" = approved by financial institution.
- * Amount is verified — both values confirmed matching in live sandbox test.
- */
+// Called after Interswitch redirects back to our callback URL.
+// We never trust the redirect alone — we always verify server-side
+// before marking the payment as successful or recording it in the database.
 export const verifyPayment = async (
   txnRef: string,
   amountNaira: number,
@@ -163,6 +149,9 @@ export const verifyPayment = async (
 
     const returnedAmountKobo = Number(data.Amount);
     const responseCode = String(data.ResponseCode ?? "");
+
+    // Two conditions must both pass: ResponseCode "00" means the bank approved it,
+    // and the amount must match exactly what we charged — no funny business.
     const approved = responseCode === "00" && returnedAmountKobo === amountKobo;
 
     return {
