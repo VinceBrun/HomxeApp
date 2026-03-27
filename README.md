@@ -109,37 +109,38 @@ Payment was processed through First Bank Nigeria on the Interswitch network.
 
 The following screenshots show the complete end-to-end payment flow as tested live on device.
 
+
 **Step 1 — Property Details with Pay Rent button**
 
-![Property details screen](SCREENSHOT_1)
+![photo_2026-03-27_12-09-05](https://github.com/user-attachments/assets/70249285-5b69-476d-bd07-082f88fa1951)
 
 **Step 2 — Secure Payment screen opens inside the app**
 
-![Payment screen with amount ₦35,000](SCREENSHOT_2)
+![photo_2026-03-27_12-09-17](https://github.com/user-attachments/assets/b98f6eca-0ca6-45a3-b506-710a3c2d2a33)
 
 **Step 3 — Interswitch hosted checkout loads with all payment options**
 
-![Interswitch checkout showing Card, Transfer, OPay, Quickteller, QR, USSD and Wallet options](SCREENSHOT_3)
+![photo_2026-03-27_12-09-24](https://github.com/user-attachments/assets/61ede54d-6b72-4a87-ae64-16965b70243a)
 
 **Step 4 — Card details entered (Verve test card)**
 
-![Card number, expiry and CVV entered](SCREENSHOT_4)
+![photo_2026-03-27_12-09-45](https://github.com/user-attachments/assets/34abc97c-2d86-4d48-b181-cb5f6729299a)
 
 **Step 5 — PIN entry**
 
-![4-digit card PIN screen](SCREENSHOT_5)
+![photo_2026-03-27_12-09-54](https://github.com/user-attachments/assets/db6534e2-57ae-4ea3-8685-64cbc8a77915)
 
 **Step 6 — OTP verification**
 
-![OTP sent to registered phone number, entered as 123456](SCREENSHOT_6)
+![photo_2026-03-27_12-10-00](https://github.com/user-attachments/assets/bc37b86a-ab31-4f8f-a048-2ca9f517ceca)
 
 **Step 7 — Interswitch confirms payment successful**
 
-![Interswitch confirmation screen — Payment Successful, feel free to close this window](SCREENSHOT_7)
+![photo_2026-03-27_12-10-05](https://github.com/user-attachments/assets/90465419-7f3a-415f-b011-d1ace1799ade)
 
 **Step 8 — Homxe in-app success screen**
 
-![Homxe success screen showing ₦35,000 paid for 3BR Apartment, transaction reference HMX_RENT_1774492241605_BJ454, timestamp 26/03/2026 03:27:55](SCREENSHOT_8)
+![photo_2026-03-27_12-10-11](https://github.com/user-attachments/assets/f1b5e7b1-e800-4a27-9040-0105c9a20b3d)
 
 ### Files involved
 
@@ -201,6 +202,8 @@ The Interswitch sandbox credentials above are the default public test credential
 ```
 Seeker:   Home → Explore (Map) → Contact → Profile
 Owner:    Dashboard → Properties → Services → Profile
+
+
 Artisan:  Home → Jobs → Earnings → Profile
 ```
 
