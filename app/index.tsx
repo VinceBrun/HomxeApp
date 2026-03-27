@@ -174,7 +174,10 @@ export default function Index() {
           <View className="flex-1 justify-center items-center gap-4">
             {(isFirst || isSecond) && (
               <>
-                <Pressable onPress={() => router.push("/sign-up")}>
+                <Pressable onPress={async () => {
+                  await AsyncStorage.setItem("onboardingCompleted", "true");
+                  router.push("/sign-up");
+                }}>
                   <Text
                     className="text-lg font-poppins text-center"
                     style={{ color: theme.text }}
@@ -190,7 +193,10 @@ export default function Index() {
                   >
                     Already have an account?{" "}
                   </Text>
-                  <Pressable onPress={() => router.push("/sign-in")}>
+                  <Pressable onPress={async () => {
+                    await AsyncStorage.setItem("onboardingCompleted", "true");
+                    router.push("/sign-in");
+                  }}>
                     <Text
                       className="text-md font-poppins"
                       style={{ color: theme.primary }}
@@ -221,7 +227,10 @@ export default function Index() {
                   >
                     Already have an account?{" "}
                   </Text>
-                  <Pressable onPress={() => router.push("/sign-in")}>
+                  <Pressable onPress={async () => {
+                    await AsyncStorage.setItem("onboardingCompleted", "true");
+                    router.push("/sign-in");
+                  }}>
                     <Text
                       className="text-md font-poppinsSemibold"
                       style={{ color: theme.primary }}
@@ -256,7 +265,7 @@ export default function Index() {
 
   // If onboarding completed, redirect to auth-hub
   if (hasCompletedOnboarding) {
-    return <Redirect href="/auth-hub" />;
+    return <Redirect href="/(shared)/(auth)/auth-hub" />;
   }
 
   // Show onboarding

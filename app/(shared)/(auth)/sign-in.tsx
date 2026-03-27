@@ -98,8 +98,7 @@ export default function SignIn() {
         } else {
           setRememberedEmail(null);
         }
-        router.dismissAll();
-        router.replace("/(shared)/auth-hub");
+        router.replace("/(shared)/(auth)/auth-hub");
       },
     );
   };
