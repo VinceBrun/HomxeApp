@@ -11,7 +11,10 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.homxe.app",
-      "associatedDomains": ["applinks:homxe.com", "applinks:www.homxe.com"]
+      "associatedDomains": [
+        "applinks:homxe.com",
+        "applinks:www.homxe.com"
+      ]
     },
     "android": {
       "adaptiveIcon": {
@@ -36,7 +39,10 @@
               "pathPrefix": "/property"
             }
           ],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
       ]
     },
@@ -60,6 +66,12 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "87699019-8c80-4b80-b718-99b9ba52b2da"
+      }
     }
   }
 }
