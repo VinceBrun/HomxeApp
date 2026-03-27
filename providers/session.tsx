@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { personaService } from "@/services/persona";
 import { Profile, UserPersona } from "@/types";
 import { Session, User } from "@supabase/supabase-js";
+import { router } from "expo-router";
 import {
   createContext,
   ReactNode,
@@ -209,6 +210,7 @@ export const SessionProvider = ({ children }: { children: ReactNode }) => {
     setProfile(null);
     setActivePersona(null);
     setAllPersonas([]);
+    router.replace("/(shared)/(auth)/sign-in");
   }, []);
 
   const value = useMemo(

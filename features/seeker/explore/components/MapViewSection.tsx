@@ -6,7 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import BottomSheet, { BottomSheetScrollView } from "@gorhom/bottom-sheet";
 import React, { useMemo } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker } from "react-native-maps";
 import { ExploreProperty, UserLocation } from "../types/explore.types";
 import CustomMapMarker from "./CustomMapMarker";
 
@@ -49,7 +49,6 @@ export default function MapViewSection({
       <MapView
         ref={mapRef}
         style={styles.map}
-        provider={PROVIDER_GOOGLE}
         initialRegion={{
           latitude: userLocation?.latitude || 4.8156,
           longitude: userLocation?.longitude || 7.0498,
