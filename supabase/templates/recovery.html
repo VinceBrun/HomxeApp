@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Reset your password</title>
+  </head>
+  <body
+    style="
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    "
+  >
+    <div
+      style="
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      "
+    >
+      <h2 style="color: #1e5a1e; margin-bottom: 20px">Reset Your Password</h2>
+
+      <p style="color: #333; font-size: 14px; line-height: 1.6">
+        We received a request to reset your password for your HomXe account.
+      </p>
+
+      <p style="color: #333; font-size: 14px; line-height: 1.6">
+        Click the button below to reset your password:
+      </p>
+
+      <div style="margin: 30px 0; text-align: center">
+        <a
+          href="{{ .ConfirmationURL }}"
+          style="
+            display: inline-block;
+            padding: 14px 32px;
+            background-color: #1e5a1e;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+          "
+        >
+          Reset Password
+        </a>
+      </div>
+
+      <p style="color: #666; font-size: 12px; line-height: 1.6">
+        This link will expire in 1 hour for security reasons.
+      </p>
+
+      <p style="color: #666; font-size: 12px; line-height: 1.6">
+        If you didn't request a password reset, you can safely ignore this
+        email. Your password will remain unchanged.
+      </p>
+
+      <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0" />
+
+      <p style="color: #999; font-size: 11px">
+        If the button doesn't work, copy and paste this link into your
+        browser:<br />
+        <span style="color: #1e5a1e; word-break: break-all"
+          >{{ .ConfirmationURL }}</span
+        >
+      </p>
+    </div>
+  </body>
+</html>

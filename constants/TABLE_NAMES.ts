@@ -1,0 +1,17 @@
+export const TABLE_NAMES = {
+  chats: 'chats',
+  profiles: 'profiles',
+  user_personas: 'user_personas', 
+  complaints: 'complaints',
+  device_tokens: 'device_tokens',
+  kyc_verifications: 'kyc_verifications',
+  messages: 'messages',
+  last_message: 'last_message',
+  payments: 'payments',
+  properties: 'properties',
+  saved_properties: 'saved_properties',
+  reviews: 'reviews',
+  schedules: 'schedules',
+  tenancies: 'tenancies',
+  typing_status: 'typing_status',
+};
