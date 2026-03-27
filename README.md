@@ -111,7 +111,7 @@ The following screenshots show the complete end-to-end payment flow as tested li
 
 <table>
   <tr>
-    <td align="center"><b>1. Property Details</b><br/><img src="https://github.com/user-attachments/assets/70249285-5b69-476d-bd07-082f88fa1951" width="200"/></td>
+    <td align="center"><b>1. Property Details</b><br/><img src="https://github.com/user-attachments/assets/e864bcb0-6d70-413c-ae6c-bb8dc619fce0" width="200"/></td>
     <td align="center"><b>2. Secure Payment Screen</b><br/><img src="https://github.com/user-attachments/assets/b98f6eca-0ca6-45a3-b506-710a3c2d2a33" width="200"/></td>
     <td align="center"><b>3. Payment Options</b><br/><img src="https://github.com/user-attachments/assets/61ede54d-6b72-4a87-ae64-16965b70243a" width="200"/></td>
     <td align="center"><b>4. Card Details</b><br/><img src="https://github.com/user-attachments/assets/34abc97c-2d86-4d48-b181-cb5f6729299a" width="200"/></td>
