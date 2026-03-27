@@ -32,7 +32,6 @@ For this hackathon, we built a working MVP with three user roles.
 |---|---|
 | Frontend | React Native (Expo) |
 | Language | TypeScript |
-| Styling | NativeWind (TailwindCSS) |
 | Backend & Database | Supabase (PostgreSQL + Realtime) |
 | Payments | Interswitch Web Checkout + Transaction Status API |
 | Maps | Expo Maps (switching to Google Maps API in production) |
